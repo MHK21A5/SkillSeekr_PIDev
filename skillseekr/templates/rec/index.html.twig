@@ -23,10 +23,11 @@
 
               <!-- ... (existing content) ... -->
               <!-- Search Input -->
-              <div class="container-md mb-3">
-             <input type="text" id="searchInput" placeholder="Type to search..." class="form-control">
+              <div class="">
+             <input type="text" id="searchInput" placeholder="Type to search..." >
              </div>
              <!-- ... (existing content) ... -->
+            <div id="claimsTable">
                 {% for data in list %}
                  
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -53,22 +54,41 @@
                         <td colspan="8">no reclamation found</td>
                     </tr>
                 {% endfor %}
-                {# {% for Claims in Claimss %}
-    <tr>
-        <th scope="row">{{ loop.index }}</th>
-        <td>{{ Claims.title }}</td>
-        <td>{{ Claims.content }}</td>
-        
-        <td>
-            <a href ="{{ path('Claims_update', {'id': Claims.id}) }}" class="btn btn-primary">Update</a> |
-            <a href ="{{ path('Claims_delete', {'id': Claims.id}) }}" class="btn btn-outline-primary">Delete</a> 
-        </td>
-    </tr>
-{% endfor %} #}
+        </div>
+
+
 
             </div>
         </div>
 
     </div>
     <!-- Courses End -->
+    
+
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('keyup', function() {
+          const searchTerm = this.value;
+          console.log(searchTerm);
+  
+          // Make an AJAX request to the server
+          fetch('{{ path('Claims_show') }}?search=' + encodeURIComponent(searchTerm), {
+              headers: {
+                  'X-Requested-With': 'XMLHttpRequest' // This header is required by Symfony to recognize the request as AJAX
+              }
+          })
+          .then(response => response.text())
+          .then(html => {
+              // Update the table's tbody with the response
+              document.getElementById('claimsTable').innerHTML = html;
+          })
+          .catch(error => console.error('Error:', error));
+      });
+  });
+</script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     {% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Reclamation;
 use App\Form\RecType;
+use App\Repository\ReclamationRepository;
 use Doctrine\DBAL\Types\TextType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -109,7 +110,7 @@ public function backdelete($idrec){
     return $this->redirectToRoute('app_backrec');
 }
 #[Route('/showclaims', name: 'Claims_show')]
-public function show(ClaimsRepository $rep, Request $request): Response
+public function show(ReclamationRepository $rep, Request $request): Response
 {
     // Retrieve search term and sort parameters from the request
     $searchTerm = $request->query->get('search', '');
@@ -120,16 +121,16 @@ public function show(ClaimsRepository $rep, Request $request): Response
     // Check if the request is an AJAX request
     if ($request->isXmlHttpRequest()) {
         // If AJAX request, render the part of the template for the table body
-        return $this->render('Claims/search.html.twig', [
-            'Claimss' => $claims,
+        return $this->render('rec/search.html.twig', [
+            'list' => $claims,
             'searchTerm' => $searchTerm,
             
         ]);
     }
 
     // Render the full page for non-AJAX requests
-    return $this->render('Claims/index.html.twig', [
-        'Claimss' => $claims,
+    return $this->render('rec/index.html.twig', [
+        'list' => $claims,
         'searchTerm' => $searchTerm,
         
     ]);

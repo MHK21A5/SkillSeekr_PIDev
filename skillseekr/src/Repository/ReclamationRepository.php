@@ -45,4 +45,18 @@ class ReclamationRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+public function findBySearchCriteriaAndSort(?string $searchTerm, $sortField = 'id', $sortOrder = 'ASC'): array
+{
+    $qb = $this->createQueryBuilder('c');
+
+    if ($searchTerm) {
+        $qb->where('c.title LIKE :term OR c.content LIKE :term')
+            ->setParameter('term', '%' . $searchTerm . '%');
+    }
+
+    return $qb->getQuery()->getResult();
+}
+
+
 }
