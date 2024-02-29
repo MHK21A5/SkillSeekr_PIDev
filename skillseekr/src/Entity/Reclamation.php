@@ -20,7 +20,7 @@ class Reclamation
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
-    #[Assert\Length(max: 255)]
+    #[Assert\Length(min: 4)]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]

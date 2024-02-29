@@ -17,24 +17,9 @@ class RecType extends AbstractType
     {
         $builder
          
-        ->add('title', TextType::class, [
-            'constraints' => [
-                new Assert\NotBlank(),
-                new Assert\Length(['min' => 4 ]),
-            
-                
-            ],
-        ])
+        ->add('title')
 
-            ->add('content',TextType::class,   
-            [
-                'constraints' => [
-                    new Assert\NotBlank(),
-                    new Assert\Length(['min' => 15 ]),
-                    
-
-                ],
-            ])
+        ->add('content')
         ;
     }
 
