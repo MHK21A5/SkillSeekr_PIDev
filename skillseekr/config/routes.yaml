@@ -1,0 +1,12 @@
+#index:
+#    path: /front
+#    controller: App\Controller\ServiceController::index
+back_page:
+    path: /back
+    controller: 'App\Controller\ServiceController::back'
+app_rec_update:
+    path: /rec/update/{idrec}
+    controller: 'App\Controller\RecController::update'
+reponse:
+    resource: App\Controller\ReponseController
+    type: annotation

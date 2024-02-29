@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class BackHomeController extends AbstractController
+{
+    #[Route('/back/home', name: 'app_back_home')]
+    public function back(): Response
+    {
+        return $this->render('back_home/index.html.twig', [
+            'controller_name' => 'BackHomeController',
+        ]);
+    }
+}
+
+#ajout /et les elements du crud
+#class BackHomeController extends AbstractController
+/**{
+    #[Route('/back/home', name: 'app_back_home')]
+    public function back(): Response
+    {
+        return $this->render('back_home/index.html.twig', [
+            'controller_name' => 'BackHomeController',
+        ]);
+    }
+}*/

@@ -1,0 +1,74 @@
+{% extends "Frontbase.html.twig" %}
+
+
+
+{% block title %}  {% endblock %}
+
+
+{% block body %}
+
+
+<!-- Courses Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row justify-content-start">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Reclamations</h6>
+                <h1 class="mb-5"> Reclamation </h1>
+                <div class="container-md">
+                    <a class="btn btn-primary" href="{{ path('create') }}">Create new</a>
+                </div>
+            </div>
+            <div class="row g-4 justify-content-center">
+
+              <!-- ... (existing content) ... -->
+              <!-- Search Input -->
+              <div class="container-md mb-3">
+             <input type="text" id="searchInput" placeholder="Type to search..." class="form-control">
+             </div>
+             <!-- ... (existing content) ... -->
+                {% for data in list %}
+                 
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="course-item bg-light">
+
+                            <div class="text-center p-4 pb-0">
+                                <i class="fa fa-3x fa-globe text-primary mb-4"></i>
+                                <h2 class="mb-4">{{ data.title }}</h2>
+                                <h3 class="mb-0">{{ data.content }}</h3>
+                                
+                              
+
+                               <a class="btn btn-primary" href="{{ path('update',{'idrec':data.idrec}) }}">Update</a>
+                               <a class="btn btn-outline-primary" href="{{ path('delete',{'idrec':data.idrec}) }}">Delete</a>
+                               <a class="btn btn-outline-primary" href="{{ path('reponse_create',{'id':data.idrec}) }}">Repondre</a>
+
+                               
+                            </div>
+
+                        </div>
+                    </div>
+                {% else %}
+                    <tr>
+                        <td colspan="8">no reclamation found</td>
+                    </tr>
+                {% endfor %}
+                {# {% for Claims in Claimss %}
+    <tr>
+        <th scope="row">{{ loop.index }}</th>
+        <td>{{ Claims.title }}</td>
+        <td>{{ Claims.content }}</td>
+        
+        <td>
+            <a href ="{{ path('Claims_update', {'id': Claims.id}) }}" class="btn btn-primary">Update</a> |
+            <a href ="{{ path('Claims_delete', {'id': Claims.id}) }}" class="btn btn-outline-primary">Delete</a> 
+        </td>
+    </tr>
+{% endfor %} #}
+
+            </div>
+        </div>
+
+    </div>
+    <!-- Courses End -->
+    {% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'Backbase.html.twig' %}
+
+
+{% block title%}Reponse{% endblock%}
+
+{% block body %}
+<div class="container">
+
+        
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">subject</th>
+      <th scope="col">message</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for Reponse in list %}
+    <tr>
+      <th scope="row">{{Reponse.id}}</th>
+      <td>{{Reponse.subject}}</td>
+      <td>{{Reponse.message}}</td>
+      
+      <td>
+      <div class="container-md">
+      <a class="btn btn-danger" href={{ path('delete_back',{'id':Reponse.id}) }}">Delete</a>
+      </div>
+      </td>
+      {% endfor %}
+    </tr>
+  </tbody>
+</table>
+{% endblock %}
